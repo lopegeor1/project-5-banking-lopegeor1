@@ -58,3 +58,13 @@ def test_deposit_appended_to_transactions():
     account = Account()
     account.deposit(-300)
     assert account.transactions == [300]
+
+def test_withdrawal_converted_to_negative():
+    """
+    Given a positive amount argument for deposit, the amount value is converted
+    to negative.
+    """
+    account = Account()
+    amount = 80
+    account.withdraw(amount)
+    assert account.get_balance() == -80

@@ -54,6 +54,16 @@ class Account:
             amount = amount * -1
         self.transactions.append(amount)
 
+    def withdraw(self, amount):
+        """make withdrawal from account"""
+        if amount < 0:
+            amount = amount * -1
+        if (sum(self.transactions) - amount) < 0:
+            print("Warning: account in overdrawn position \nCheck account balance!")
+        #enusure withdraw amount is converted to a negative value
+        amount = amount * -1
+        self.transactions.append(amount)
+
     def get_balance(self):
         """display the current balance in account object"""
         # return the current value of the balance
