@@ -3,7 +3,7 @@ The test module for Account and Transaction
 """
 import datetime as dt
 
-from banking import Transaction
+from banking import Account, Transaction
 
 def test_default_timestamp_now():
     """
@@ -42,3 +42,13 @@ def test_repr_instance():
     trans_three = trans_two #recreate trans_two instance as trans_three directly using __repr__()
     #assert trans_three == Transaction(500, dt.datetime(2018, 1, 10, 0, 0, 0))
     assert trans_two == trans_three
+
+def test_negative_deposits_converted_to_positive():
+    """
+    Given a negative amount argument for deposit, the amount value is converted
+    to positive.
+    """
+    account = Account()
+    amount = -300
+    account.deposit(amount)
+    assert account.get_balance() == 300
