@@ -75,3 +75,9 @@ def test_withdrawal_appended_to_transactions():
     account.deposit(-300) # a previous transaction instance
     account.withdraw(80)
     assert account.transactions == [300, -80]
+
+def test_no_transactions_return_0_balance():
+    """Given no transaction instances, the balance should be 0"""
+    account = Account()
+    # there are neither any previous deposit or withdraw transactions
+    assert account.get_balance() == 0
