@@ -52,3 +52,9 @@ def test_negative_deposits_converted_to_positive():
     amount = -300
     account.deposit(amount)
     assert account.get_balance() == 300
+
+def test_deposit_appended_to_transactions():
+    """The deposit instance is appended to transactions"""
+    account = Account()
+    account.deposit(-300)
+    assert account.transactions == [300]
