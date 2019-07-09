@@ -68,3 +68,10 @@ def test_withdrawal_converted_to_negative():
     amount = 80
     account.withdraw(amount)
     assert account.get_balance() == -80
+
+def test_withdrawal_appended_to_transactions():
+    """The withdraw instance is appended to transactions"""
+    account = Account()
+    account.deposit(-300) # a previous transaction instance
+    account.withdraw(80)
+    assert account.transactions == [300, -80]
