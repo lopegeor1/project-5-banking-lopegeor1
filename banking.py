@@ -14,3 +14,15 @@ class Transaction:
             self.timestamp = dt.datetime.now()
         else:
             self.timestamp = timestamp
+
+    def __str__(self):
+        """Returns transaction with timestamp."""
+        dt_formatted = '{:%Y-%m-%d}'.format(self.timestamp)
+        if self.amount < 0:
+            amt_formattted = '-${0:.2f}'.format(self.amount * -1)
+        elif self.amount > 0:
+            amt_formattted = '+${0:.2f}'.format(self.amount)
+        else:
+            amt_formattted = '${0:.2f}'.format(self.amount)
+        # Returns amount, time of transaction.
+        return f'{dt_formatted}: {amt_formattted}'

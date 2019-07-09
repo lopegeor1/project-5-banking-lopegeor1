@@ -24,3 +24,10 @@ def test_userdefined_timestamp():
     arg_timestamp = dt.datetime(2018, 1, 10)
     trans_one = Transaction(100, arg_timestamp)
     assert trans_one.timestamp == arg_timestamp
+
+def test_str_instance():
+    """
+    Given __str__(), a string respresentation of the object can be created.
+    """
+    trans_one = Transaction(500, dt.datetime(2018, 1, 10))
+    assert str(trans_one) == '2018-01-10: +$500.00'
