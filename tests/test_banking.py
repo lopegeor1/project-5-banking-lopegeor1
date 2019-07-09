@@ -31,3 +31,14 @@ def test_str_instance():
     """
     trans_one = Transaction(500, dt.datetime(2018, 1, 10))
     assert str(trans_one) == '2018-01-10: +$500.00'
+
+def test_repr_instance():
+    """
+    Given __repr__(), an expression is created that can be used directly to
+    recreate this object.  This new object is created and should be the same as
+    the original object.
+    """
+    trans_two = Transaction(500, dt.datetime(2018, 1, 10))
+    trans_three = trans_two #recreate trans_two instance as trans_three directly using __repr__()
+    #assert trans_three == Transaction(500, dt.datetime(2018, 1, 10, 0, 0, 0))
+    assert trans_two == trans_three

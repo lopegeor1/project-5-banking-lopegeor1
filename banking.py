@@ -26,3 +26,10 @@ class Transaction:
             amt_formattted = '${0:.2f}'.format(self.amount)
         # Returns amount, time of transaction.
         return f'{dt_formatted}: {amt_formattted}'
+
+    def __repr__(self):
+        """Returns expression which can be used to recreate this object."""
+        dt_formatted = '{:%Y, %#m, %#d}'.format(self.timestamp)
+        # Returns amount, time of transaction.
+        # this string can be copy & paste to interpreter to reproduce similar instance...
+        return f'Transaction({self.amount}, dt.datetime({dt_formatted}))'
