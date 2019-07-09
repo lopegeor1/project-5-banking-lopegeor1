@@ -81,3 +81,14 @@ def test_no_transactions_return_0_balance():
     account = Account()
     # there are neither any previous deposit or withdraw transactions
     assert account.get_balance() == 0
+
+def test_account_balance_series_of_transactions():
+    """
+    Given some transaction instances, the balance should be the sum total
+    of all transacation instances
+    """
+    acc = Account()
+    acc.deposit(100)
+    acc.withdraw(90)
+    acc.deposit(10)
+    assert acc.get_balance() == 20

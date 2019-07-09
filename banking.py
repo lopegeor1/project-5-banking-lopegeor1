@@ -70,3 +70,9 @@ class Account:
         #balance = '{0:.2f}'.format(sum(self.transactions))
         #return balance
         return round(sum(self.transactions), 2) * 1.00
+
+    def get_transactions(self):
+        """display list of transations in account object"""
+        my_list = self.transactions
+        #for my_list in range(len(my_list)):
+        print('\n'.join(map(str, my_list)))
