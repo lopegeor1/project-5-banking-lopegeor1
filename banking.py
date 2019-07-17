@@ -1,5 +1,6 @@
 """Assignment 5: Bank Account"""
 import datetime as dt
+
 class Transaction:
     """
     A transaction class represents a monetary transaction event.
@@ -31,8 +32,8 @@ class Transaction:
         """Returns expression which can be used to recreate this object."""
         dt_formatted = '{:%Y, %#m, %#d}'.format(self.timestamp)
         # Returns amount, time of transaction.
-        # this string can be copy & paste to interpreter to reproduce similar instance...
-        return f'Transaction({self.amount}, dt.datetime({dt_formatted}))'
+        # String formatted especially to handle return sum of all transactions
+        return f'[{self.amount}, ({dt_formatted})]'
 
 class Account:
     """
@@ -46,30 +47,36 @@ class Account:
         # balance = 0.00 -> Account() object is initialized with zero balance
         # self.my_list = [] -> self.transations
         self.transactions = [] # array stores list of all transacations on Account() object
+        self.balance = 0.00 # self.balance added solely for testing purposes
 
     def deposit(self, amount):
         """make deposit to account"""
-        #enusure deposit amount is converted to a positive value
+        #ensure deposit amount is converted to a positive value
         if amount < 0:
             amount = amount * -1
-        self.transactions.append(amount)
-
+        transaction = Transaction(amount)
+        self.transactions.append(transaction)
+        self.balance += amount
     def withdraw(self, amount):
         """make withdrawal from account"""
         if amount < 0:
             amount = amount * -1
-        if (sum(self.transactions) - amount) < 0:
+        #if (sum(row[1] for row in self.transactions) - amount) < 0:
+        if (self.balance - amount) < 0:
+        #if (sum(self.transactions) - amount) < 0:
             print("Warning: account in overdrawn position \nCheck account balance!")
-        #enusure withdraw amount is converted to a negative value
+        #ensure withdraw amount is converted to a negative value
         amount = amount * -1
-        self.transactions.append(amount)
+        transaction = Transaction(amount)
+        self.transactions.append(transaction)
+        self.balance += amount
 
     def get_balance(self):
         """display the current balance in account object"""
         # return the current value of the balance
         #balance = '{0:.2f}'.format(sum(self.transactions))
-        #return balance
-        return round(sum(self.transactions), 2) * 1.00
+        return round(self.balance, 2) * 1.00
+
 
     def get_transactions(self):
         """display list of transations in account object"""
