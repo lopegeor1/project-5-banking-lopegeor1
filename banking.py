@@ -30,7 +30,7 @@ class Transaction:
 
     def __repr__(self):
         """Returns expression which can be used to recreate this object."""
-        dt_formatted = '{:%Y, %#m, %#d}'.format(self.timestamp)
+        dt_formatted = '{:%Y_%#m_%#d}'.format(self.timestamp)
         # Returns amount, time of transaction.
         # String formatted especially to handle return sum of all transactions
         return f'[{self.amount}, ({dt_formatted})]'

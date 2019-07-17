@@ -4,7 +4,6 @@ The test module for Account and Transaction
 import datetime as dt
 import ast
 from banking import Account, Transaction
-
 def test_default_timestamp_now():
     """
     Given no user input defined for timestamp, the default current timestamp
