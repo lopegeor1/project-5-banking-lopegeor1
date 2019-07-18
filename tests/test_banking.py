@@ -2,7 +2,7 @@
 The test module for Account and Transaction
 """
 import datetime as dt
-
+import ast
 from banking import Account, Transaction
 
 def test_default_timestamp_now():
@@ -34,13 +34,10 @@ def test_str_instance():
 
 def test_repr_instance():
     """
-    Given __repr__(), an expression is created that can be used directly to
-    recreate this object.  This new object is created and should be the same as
-    the original object.
+    Given __repr__(), an expression is created that can be used to recreate object.
     """
     trans_two = Transaction(500, dt.datetime(2018, 1, 10))
     trans_three = trans_two #recreate trans_two instance as trans_three directly using __repr__()
-    #assert trans_three == Transaction(500, dt.datetime(2018, 1, 10, 0, 0, 0))
     assert trans_two == trans_three
 
 def test_negative_deposits_converted_to_positive():
@@ -57,7 +54,11 @@ def test_deposit_appended_to_transactions():
     """The deposit instance is appended to transactions"""
     account = Account()
     account.deposit(-300)
-    assert account.transactions == [300]
+    account.deposit(100)
+    account.deposit(30.59)
+    # all of the deposit instances or 'transactions' are included Account(object)
+    data = ast.literal_eval(repr(account.transactions))
+    assert sum(row[0] for row in data) == 430.59
 
 def test_withdrawal_converted_to_negative():
     """
@@ -72,15 +73,19 @@ def test_withdrawal_converted_to_negative():
 def test_withdrawal_appended_to_transactions():
     """The withdraw instance is appended to transactions"""
     account = Account()
-    account.deposit(-300) # a previous transaction instance
+    account.deposit(-300)
     account.withdraw(80)
-    assert account.transactions == [300, -80]
+    account.withdraw(120)
+    # all of the withdraw instances or 'transactions' should be in Account(object)
+    data = ast.literal_eval(repr(account.transactions))
+    assert account.get_balance() == sum(row[0] for row in data)
 
 def test_no_transactions_return_0_balance():
     """Given no transaction instances, the balance should be 0"""
     account = Account()
+    data = ast.literal_eval(repr(account.transactions))
     # there are neither any previous deposit or withdraw transactions
-    assert account.get_balance() == 0
+    assert sum(row[0] for row in data) == 0
 
 def test_account_balance_series_of_transactions():
     """
@@ -91,4 +96,5 @@ def test_account_balance_series_of_transactions():
     acc.deposit(100)
     acc.withdraw(90)
     acc.deposit(10)
-    assert acc.get_balance() == 20
+    data = ast.literal_eval(repr(acc.transactions))
+    assert sum(row[0] for row in data) == 20
