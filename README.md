@@ -72,42 +72,45 @@ datetime.datetime(2002, 1, 10, 0, 0, 0)
 ```
 
 ### Requirements & Evaluation
-- `(/1)` Write you classes in a module called `banking.py`
-- `(/1)` Write your tests in a module called `test_banking.py`
+11/12
+- `(1/1)` Write you classes in a module called `banking.py`
+- `(1/1)` Write your tests in a module called `test_banking.py`
 -  Write a class called `Transaction` as defined above:
-    - `(/2)` Class definition
-    - `(/4)` `__init__` method & tests ensuring that:
+    - `(2/2)` Class definition
+    - `(4/4)` `__init__` method & tests ensuring that:
         - The amount parameter is bound to `self`
         - The provided optional timestamp parameter is bound to `self`. If no
           value is provided, use the current datetime.
-    - `(/2)` `__repr__` which returns an appropriate string + test. Remember,
+    - `(1/2)` `__repr__` which returns an appropriate string + test. Remember,
     good practice for a `repr` is to produce a string which can be copy &
     pasted into the interpreter to reproduce a similar instance.
-    - `(/2)` `__str__` which returns a string containing both the timestamp and
+      `The test here should look at the result of repr() which is a s tring`
+    - `(2/2)` `__str__` which returns a string containing both the timestamp and
       amount. E.g.
         - `2019-01-01: +$1,234.56`
         - `2020-01-01: -$17.25`
 
+14/19
 - Write a class called Account as defined above:
-    - `(/2)` Class definition
-    - `(/6)` A deposit method which:
-        - `(/1)` Is named `deposit`
-        - `(/1)` Accepts a single parameter called amount
-        - `(/2)` The amount is converted to a positive value + tests
-        - `(/2)` A new instance of `Transaction` is created using the amount.
+    - `(2/2)` Class definition
+    - `(6/6)` A deposit method which:
+        - `(1/1)` Is named `deposit`
+        - `(1/1)` Accepts a single parameter called amount
+        - `(2/2)` The amount is converted to a positive value + tests
+        - `(2/2)` A new instance of `Transaction` is created using the amount.
                  The new transaction instance is then appended to the account's
                  `transactions`. Provide test(s).
-    - `(/6)` A withdraw method which:
-        - `(/1)` Is named `withdraw`
-        - `(/1)` Accepts a single parameter called amount
-        - `(/2)` The amount is converted to a negative value + tests
-        - `(/2)` A new instance of `Transaction` is created with the converted
+    - `(6/6)` A withdraw method which:
+        - `(1/1)` Is named `withdraw`
+        - `(1/1)` Accepts a single parameter called amount
+        - `(2/2)` The amount is converted to a negative value + tests
+        - `(2/2)` A new instance of `Transaction` is created with the converted
           amount. The instance is appended to the list of transactions. Provide
           test(s).
-    - `(/5)` A balance retrieval method which:
-        - `(/1)` Is named `get_balance`
-        - `(/4)` Returns the sum of all transaction amounts stored on the
-          object.
+    - `(1/5)` A balance retrieval method which:
+        - `(1/1)` Is named `get_balance`
+        - `(0/4)` Returns the sum of all transaction amounts stored on the
+          object. **This function returns the balance property rather than the sum of all transaction amounts**
             - If no transactions exist, this should return 0
             - If the transactions consist of a deposit of 100, a withdrawl of
               90, and deposit of 10, the balance should be 20.
@@ -142,3 +145,5 @@ class MyClass:
     def __init__(self):
         self.my_list = []
 ```
+
+25/31
