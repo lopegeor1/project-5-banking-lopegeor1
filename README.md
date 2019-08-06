@@ -90,7 +90,7 @@ datetime.datetime(2002, 1, 10, 0, 0, 0)
         - `2019-01-01: +$1,234.56`
         - `2020-01-01: -$17.25`
 
-14/19
+15/19
 - Write a class called Account as defined above:
     - `(2/2)` Class definition
     - `(6/6)` A deposit method which:
@@ -146,4 +146,4 @@ class MyClass:
         self.my_list = []
 ```
 
-25/31
+26/31
